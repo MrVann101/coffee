@@ -1,14 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.project4.Login"
-            prefHeight="400.0" prefWidth="600.0" >
-
-</AnchorPane>
+<StackPane prefHeight="419.0" prefWidth="319.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.controllers.AdminLoginController">
+   <children>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="376.0" prefWidth="288.0">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="46.0" prefWidth="285.0" text="WELCOME TO THE ADMIN OPTIONS">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Bookman Old Style Bold" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <VBox prefHeight="320.0" prefWidth="285.0">
+               <children>
+                  <TextField fx:id="usernameField" promptText="Username">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="50.0" right="50.0" top="50.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font>
+                  </TextField>
+                  <PasswordField fx:id="passwordField" promptText="Password">
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="50.0" right="50.0" top="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font>
+                  </PasswordField>
+                  <Button fx:id="loginButton" mnemonicParsing="false" onAction="#handleLogin" prefHeight="25.0" prefWidth="99.0" text="LOGIN">
+                     <VBox.margin>
+                        <Insets bottom="50.0" left="90.0" right="50.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Bookman Old Style Bold" size="13.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</StackPane>
