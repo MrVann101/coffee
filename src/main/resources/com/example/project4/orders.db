@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS orders (
+    id TEXT,
+    name TEXT,
+    price REAL,
+    quantity INTEGER,
+    category TEXT,
+    date_time TEXT
+);
