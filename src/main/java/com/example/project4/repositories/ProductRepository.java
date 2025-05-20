@@ -1,13 +1,11 @@
 package com.example.project4.repositories;
 
 import com.example.project4.models.Product;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductRepository {
-
-    private final static List<Product> products = new ArrayList<>();
+    private final List<Product> products = new ArrayList<>();
 
     public ProductRepository() {
         if (products.isEmpty()) {
@@ -19,28 +17,21 @@ public class ProductRepository {
             products.add(new Product("7", "Hotdog", 78.0, "Non-Coffee", "/com/example/project4/Images/default.jpg", 0));
             products.add(new Product("8", "Hotdog", 78.0, "Non-Coffee", "/com/example/project4/Images/default.jpg", 0));
             products.add(new Product("9", "Hotdog", 78.0, "Non-Coffee", "/com/example/project4/Images/default.jpg", 0));
-            products.add(new Product("10", "Hotdog", 78.0, "Non-Coffee", "/com/example/project4/Images/default.jpg", 0));
+            products.add(new Product("10", "Hotdog", 78.0, "Non-Coffee", "/com/example/project4/Images/homepage.jpg", 0));
             products.add(new Product("11", "Hotdog", 78.0, "Non-Coffee", "/com/example/project4/Images/default.jpg", 0));
-            products.add(new Product("12", "macha", 85.0, "Coffee", "/com/example/project4/Images/default.jpg", 0));
+            products.add(new Product("12", "Matcha", 85.0, "Coffee", "/com/example/project4/Images/default.jpg", 0));
         }
     }
 
-    public List<Product> getAll() {
+    public List<Product> getAllProducts() {
         return products;
     }
 
-    public Product getById(String id) {
-        return products.stream()
-                .filter(p -> p.getId().equals(id))
-                .findFirst()
-                .orElse(null);
+    public void addProduct(Product product) {
+        products.add(product);
+    }
+    public void removeProduct(Product product) {
+        products.removeIf(p -> p.getId().equals(product.getId()));
     }
 
-    // This method allows you to update the image path of a product by its ID
-    public void updateProductImage(String productId, String newImagePath) {
-        Product product = getById(productId);
-        if (product != null) {
-            product.setImagePath(newImagePath);  // Update image path in product
-        }
-    }
 }

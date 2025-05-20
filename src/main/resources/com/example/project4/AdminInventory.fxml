@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="845.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.controllers.AdminInventoryController">
+   <children>
+      <AnchorPane prefHeight="398.0" prefWidth="845.0">
+         <children>
+            <ListView fx:id="productListView" layoutX="16.0" prefHeight="220.0" prefWidth="801.0" AnchorPane.bottomAnchor="227.33333333333331" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="0.0" />
+            <StackPane layoutX="14.0" layoutY="228.0" prefHeight="220.0" prefWidth="801.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="30.0">
+               <children>
+                  <AnchorPane prefHeight="369.0" prefWidth="801.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+                     <children>
+                        <TextField fx:id="productIDAdminInventory" layoutX="128.0" layoutY="22.0" AnchorPane.leftAnchor="128.0" AnchorPane.topAnchor="22.0" />
+                        <TextField fx:id="productNameAdminInventory" layoutX="128.0" layoutY="58.0" prefHeight="25.0" prefWidth="207.0" AnchorPane.leftAnchor="128.0" />
+                        <TextField fx:id="priceAdminInventory" layoutX="453.0" layoutY="20.0" />
+                        <Label layoutX="58.0" layoutY="22.0" prefHeight="25.0" prefWidth="82.0" text="Product ID:" />
+                        <Label layoutX="39.0" layoutY="59.0" prefHeight="25.0" prefWidth="99.0" text="Product Name:" />
+                        <Label layoutX="408.0" layoutY="18.0" prefHeight="25.0" prefWidth="62.0" text="Price:" />
+                        <ChoiceBox fx:id="categoryAdminInventory" layoutX="454.0" layoutY="60.0" prefWidth="150.0" />
+                        <Label layoutX="385.0" layoutY="58.0" prefHeight="25.0" prefWidth="62.0" text="Category:" />
+                        <Button layoutX="142.0" layoutY="160.0" mnemonicParsing="false" onAction="#onClickAdd" prefHeight="39.0" prefWidth="72.0" text="Add" AnchorPane.bottomAnchor="38.0" AnchorPane.leftAnchor="142.0" />
+                        <Button layoutX="232.0" layoutY="160.0" mnemonicParsing="false" onAction="#onClickDelete" prefHeight="39.0" prefWidth="72.0" text="delete" AnchorPane.bottomAnchor="38.0" />
+                        <Label layoutX="3.0" layoutY="92.0" prefHeight="25.0" prefWidth="123.0" text="Product Image Name:" />
+                        <ChoiceBox fx:id="imageChoice" layoutX="128.0" layoutY="96.0" prefWidth="150.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </StackPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
