@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
@@ -41,25 +40,15 @@
       <HBox prefHeight="34.0" prefWidth="729.0" BorderPane.alignment="CENTER" />
    </bottom>
    <center>
-      <FlowPane fx:id="flowProductList" nodeOrientation="LEFT_TO_RIGHT" prefHeight="280.0" prefWidth="283.0" />
+      <ScrollPane fitToHeight="true" fitToWidth="true" pannable="true">
+         <content>
+            <FlowPane fx:id="flowProductList" hgap="5.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="280.0" prefWidth="283.0" prefWrapLength="600.0" vgap="5.0">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding></FlowPane>
+         </content>
+      </ScrollPane>
    </center>
-   <top>
-      <StackPane prefHeight="71.0" prefWidth="729.0" BorderPane.alignment="CENTER">
-         <children>
-            <AnchorPane prefHeight="69.0" prefWidth="729.0">
-               <children>
-                  <ImageView fitHeight="60.0" fitWidth="81.0" layoutX="6.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="4.333333333333329" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="7.0" />
-                  <Label layoutX="112.0" layoutY="13.0" prefHeight="48.0" prefWidth="157.0" text="Coffee Shop &amp; Pastry" AnchorPane.bottomAnchor="10.333333333333329" AnchorPane.leftAnchor="112.0" AnchorPane.topAnchor="13.0">
-                     <font>
-                        <Font name="Arial Black" size="13.0" />
-                     </font>
-                  </Label>
-                  <ComboBox fx:id="adminOptionComboBox" layoutX="672.0" layoutY="21.0" nodeOrientation="LEFT_TO_RIGHT" onAction="#onClickAdmin" prefHeight="29.0" prefWidth="98.0" style="-fx-background-color: none;" AnchorPane.bottomAnchor="21.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="21.0" />
-               </children>
-            </AnchorPane>
-         </children>
-      </StackPane>
-   </top>
    <right>
       <StackPane prefHeight="324.0" prefWidth="301.0" BorderPane.alignment="CENTER">
          <children>

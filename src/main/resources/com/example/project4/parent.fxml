@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.controllers.ParentController">
+   <top>
+      <StackPane prefHeight="65.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Button layoutX="237.0" layoutY="4.0" mnemonicParsing="false" onAction="#onClickHome" prefHeight="53.0" prefWidth="113.0" text="Home" AnchorPane.bottomAnchor="7.999999999999993" AnchorPane.leftAnchor="237.0" AnchorPane.topAnchor="4.0" />
+                  <Button layoutX="360.0" layoutY="4.0" mnemonicParsing="false" onAction="#onClickMenu" prefHeight="53.0" prefWidth="113.0" text="Menu" AnchorPane.bottomAnchor="7.999999999999993" AnchorPane.topAnchor="4.0" />
+                  <Button layoutX="482.0" layoutY="4.0" mnemonicParsing="false" onAction="#onClickAdmin" prefHeight="53.0" prefWidth="113.0" text="Admin" AnchorPane.bottomAnchor="7.999999999999993" AnchorPane.topAnchor="4.0" />
+                  <Separator layoutX="5.0" layoutY="59.0" prefHeight="6.0" prefWidth="591.0" AnchorPane.bottomAnchor="0.3333333333333286" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="3.6666666666666288" AnchorPane.topAnchor="59.0" />
+                  <Label layoutX="20.0" layoutY="5.0" prefHeight="49.0" prefWidth="196.0" text="Coffee &amp; Pastry">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
+   </top>
+   <center>
+      <FlowPane fx:id="parentFlowPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

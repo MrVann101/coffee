@@ -5,15 +5,9 @@ import com.example.project4.repositories.OrderHistoryRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 
-import java.io.IOException;
 import java.util.List;
 
 public class AdminDashboardController {
@@ -101,19 +95,6 @@ public class AdminDashboardController {
 
         adminRemove.setCellFactory(cellFactory);
     }
-    @FXML
-    private void handleSignOut() {
-        try {
-            // Load the login or main dashboard scene (adjust path if needed)
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/project4/dashboard.fxml"));
-            Parent root = loader.load();
 
-            Stage stage = (Stage) SignOut.getScene().getWindow(); // current window
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
 }

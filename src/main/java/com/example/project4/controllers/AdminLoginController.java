@@ -23,37 +23,27 @@ public class AdminLoginController {
     @FXML
     private Button loginButton;
 
+    private ParentController parentController;
+
+    public void setParentController(ParentController parentController) {
+        this.parentController = parentController;
+    }
+
+
     @FXML
     private void handleLogin(ActionEvent event) {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
         if ("admin".equals(username) && "admin".equals(password)) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/project4/AdminDashboard.fxml"));
-                Scene scene = new Scene(loader.load());
-
-                // Get the current stage (window)
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-                // Set the new scene to the current stage
-                stage.setScene(scene);
-
-                // Set the width and height of the stage (window)
-                stage.setWidth(1295);  // Set width to 1024px (you can change this)
-                stage.setHeight(685);  // Set height to 768px (you can change this)
-
-                // Show the updated scene
-                stage.show();
-
-            } catch (IOException e) {
-                e.printStackTrace(); // print full stack trace
-                showAlert("Failed to load dashboard: " + e.getMessage());
-            }
+            // Tell ParentController to load AdminParent.fxml
+            parentController.loadFXMLIntoFlowPane("/com/example/project4/adminParent.fxml");
         } else {
             showAlert("Incorrect username or password.");
         }
     }
+
+
 
 
     private void showAlert(String message) {
