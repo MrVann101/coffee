@@ -1,11 +1,15 @@
 package com.example.project4;
 
 import com.example.project4.controllers.ProductController;
+import com.example.project4.controllers.ReceiptController;
 import com.example.project4.database.Database;
 import com.example.project4.models.Product;
 import com.example.project4.models.ProductItem;
 import com.example.project4.repositories.OrderHistoryRepository;
 import com.example.project4.repositories.ProductRepository;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -15,10 +19,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -156,24 +158,29 @@ public class DashboardController {
             return;
         }
 
-        OrderHistoryRepository repo = new OrderHistoryRepository();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String dateTime = LocalDateTime.now().format(formatter);
+        // Show receipt popup with order details
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("receipt.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load()));
+            stage.setTitle("Order Receipt");
+            stage.initModality(Modality.APPLICATION_MODAL);
 
-        for (Product p : orderSummary.getItems()) {
-            ProductItem item = new ProductItem(
-                    p.getId(),
-                    p.getName(),
-                    p.getPrice(),
-                    p.getQuantity(),
-                    p.getCategory(),
-                    dateTime
+            ReceiptController receiptController = loader.getController();
+
+            // Pass items to ReceiptController
+            orderSummary.getItems().forEach(item ->
+                    receiptController.addItemToReceipt(item.getName(), item.getQuantity(), item.getPrice())
             );
-            repo.addOrder(item);
-        }
 
-        showAlert(Alert.AlertType.INFORMATION, "Order placed", "Thank you! Your order has been placed.");
-        clearOrder();
+            stage.showAndWait();
+
+            // After closing receipt popup, clear order
+            clearOrder();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void saveOrderToDatabase() {

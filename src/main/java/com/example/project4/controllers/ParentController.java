@@ -3,18 +3,28 @@ package com.example.project4.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
-import java.io.IOException;
 
-public class ParentController {
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class ParentController implements Initializable {
 
     @FXML
     private FlowPane parentFlowPane;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // Automatically load the dashboard view on start
+        loadFXMLIntoFlowPane("/com/example/project4/dashboard.fxml");
+    }
+
     @FXML
     void onClickHome(ActionEvent event) {
-        loadFXMLIntoFlowPane("");
+        loadFXMLIntoFlowPane("/com/example/project4/home.fxml");
     }
 
     @FXML
@@ -39,7 +49,7 @@ public class ParentController {
 
             parentFlowPane.getChildren().add(content);
 
-            // Pass reference of ParentController to child controllers
+            // Optional: Set parent reference in child controllers
             Object controller = loader.getController();
             if (controller instanceof AdminLoginController) {
                 ((AdminLoginController) controller).setParentController(this);
@@ -51,6 +61,4 @@ public class ParentController {
             e.printStackTrace();
         }
     }
-
-
 }

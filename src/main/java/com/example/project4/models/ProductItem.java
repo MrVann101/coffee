@@ -27,7 +27,7 @@ public class ProductItem {
     public String getCategory() { return category.get(); }
     public String getDateTime() { return dateTime.get(); }
 
-    // Property Getters (for JavaFX bindings)
+    // Properties (for JavaFX bindings)
     public StringProperty productIdProperty() { return productId; }
     public StringProperty productNameProperty() { return productName; }
     public DoubleProperty priceProperty() { return price; }

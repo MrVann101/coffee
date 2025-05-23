@@ -14,8 +14,16 @@ public class OrderHistoryRepository {
     }
 
     private void createTableIfNotExists() {
-        String sql = "CREATE TABLE IF NOT EXISTS orders (" +
-                "id TEXT, name TEXT, price REAL, quantity INTEGER, category TEXT, date_time TEXT)";
+        String sql = """
+            CREATE TABLE IF NOT EXISTS orders (
+                id TEXT PRIMARY KEY,
+                name TEXT,
+                price REAL,
+                quantity INTEGER,
+                category TEXT,
+                date_time TEXT
+            )
+            """;
         try (Connection conn = DriverManager.getConnection(DB_URL);
              Statement stmt = conn.createStatement()) {
             stmt.execute(sql);
@@ -44,10 +52,10 @@ public class OrderHistoryRepository {
         }
     }
 
-
     public List<ProductItem> getAllOrders() {
         List<ProductItem> orders = new ArrayList<>();
         String sql = "SELECT * FROM orders";
+
         try (Connection conn = DriverManager.getConnection(DB_URL);
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
@@ -63,23 +71,28 @@ public class OrderHistoryRepository {
                 );
                 orders.add(item);
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return orders;
     }
 
     public List<ProductItem> searchOrders(String keyword) {
         List<ProductItem> results = new ArrayList<>();
-        String sql = "SELECT * FROM orders WHERE " +
-                "LOWER(name) LIKE ? OR LOWER(id) LIKE ? OR LOWER(category) LIKE ?";
+        String sql = """
+            SELECT * FROM orders WHERE
+            LOWER(name) LIKE ? OR LOWER(id) LIKE ? OR LOWER(category) LIKE ?
+            """;
+
         try (Connection conn = DriverManager.getConnection(DB_URL);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
             String kw = "%" + keyword.toLowerCase() + "%";
             pstmt.setString(1, kw);
             pstmt.setString(2, kw);
             pstmt.setString(3, kw);
+
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
@@ -100,6 +113,7 @@ public class OrderHistoryRepository {
 
         return results;
     }
+
     public void removeOrder(String id) {
         String sql = "DELETE FROM orders WHERE id = ?";
 
@@ -113,5 +127,4 @@ public class OrderHistoryRepository {
             e.printStackTrace();
         }
     }
-
 }
