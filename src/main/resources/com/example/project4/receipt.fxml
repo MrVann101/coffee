@@ -2,28 +2,37 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.controllers.ReceiptController" prefWidth="312.0" prefHeight="400.0">
+<StackPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.example.project4.controllers.ReceiptController" prefWidth="350" prefHeight="450">
     <children>
-        <AnchorPane>
+        <AnchorPane prefWidth="350" prefHeight="450">
             <children>
-                <VBox layoutX="5.0" layoutY="7.0" AnchorPane.topAnchor="7.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="4.6" AnchorPane.bottomAnchor="1.0">
-                    <children>
-                        <AnchorPane prefHeight="392.0" prefWidth="302.0">
-                            <children>
-                                <TableView fx:id="tableView" layoutX="14.0" layoutY="27.0" prefHeight="278.0" prefWidth="270.0" AnchorPane.topAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="18.0" AnchorPane.bottomAnchor="86.6">
-                                    <columns>
-                                        <TableColumn fx:id="products" text="Products" prefWidth="115.2"/>
-                                        <TableColumn fx:id="quantity" text="Quantity" prefWidth="76.6"/>
-                                        <TableColumn fx:id="price" text="Price" prefWidth="75.8"/>
-                                    </columns>
-                                </TableView>
-                                <Label layoutX="38.0" layoutY="320.0" text="Order Type:" AnchorPane.topAnchor="320.0" AnchorPane.leftAnchor="38.0"/>
-                                <ChoiceBox fx:id="orderType" layoutX="125.0" layoutY="328.0" prefWidth="150.0" AnchorPane.topAnchor="320.0" AnchorPane.leftAnchor="115.4"/>
-                                <Button fx:id="backButton" layoutX="27.0" layoutY="359.0" prefWidth="110.0" prefHeight="35.0" text="Back" AnchorPane.topAnchor="351.0" AnchorPane.leftAnchor="27.0"/>
-                                <Button fx:id="placeOrderButton" layoutX="165.0" layoutY="359.0" prefWidth="110.0" prefHeight="35.0" text="Place Order" AnchorPane.topAnchor="351.0" AnchorPane.leftAnchor="165.0"/>
-                            </children>
-                        </AnchorPane>
-                    </children>
+                <VBox layoutX="10" layoutY="10" spacing="8" prefWidth="330" prefHeight="430" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
+
+                    <TableView fx:id="tableView" prefHeight="280" prefWidth="330">
+                        <columns>
+                            <TableColumn fx:id="products" text="Products" prefWidth="150"/>
+                            <TableColumn fx:id="quantity" text="Quantity" prefWidth="80"/>
+                            <TableColumn fx:id="price" text="Price" prefWidth="100"/>
+                        </columns>
+                    </TableView>
+
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Label text="Order Type:"/>
+                        <ChoiceBox fx:id="orderType" prefWidth="150"/>
+                    </HBox>
+
+                    <HBox spacing="20" alignment="CENTER_RIGHT">
+                        <Label fx:id="totalLabel" text="Total: $0.00"/>
+                        <Label fx:id="discountLabel" text="Discount: $0.00"/>
+                        <Label fx:id="finalTotalLabel" text="Final Total: $0.00"/>
+                    </HBox>
+
+                    <HBox spacing="20" alignment="CENTER">
+                        <Button fx:id="backButton" text="Back" prefWidth="100"/>
+                        <Button fx:id="placeOrderButton" text="Place Order" prefWidth="100"/>
+                    </HBox>
+
                 </VBox>
             </children>
         </AnchorPane>

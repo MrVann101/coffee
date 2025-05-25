@@ -16,7 +16,7 @@ public class Database {
         try (Connection conn = connect(); Statement stmt = conn.createStatement()) {
             String sql = """
                 CREATE TABLE IF NOT EXISTS orders (
-                    id TEXT,
+                    id TEXT PRIMARY KEY,
                     name TEXT,
                     price REAL,
                     category TEXT,

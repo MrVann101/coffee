@@ -22,6 +22,10 @@ public class ReceiptController {
     @FXML private Button placeOrderButton;
     @FXML private Button backButton;
 
+    @FXML private Label totalLabel;
+    @FXML private Label discountLabel;
+    @FXML private Label finalTotalLabel;
+
     private final OrderHistoryRepository repo = new OrderHistoryRepository();
 
     @FXML
@@ -35,21 +39,36 @@ public class ReceiptController {
 
         placeOrderButton.setOnAction(e -> placeOrder());
         backButton.setOnAction(e -> goBack());
+
+        updateTotals();
     }
 
     public void addItemToReceipt(String productName, int quantity, double price) {
         tableView.getItems().add(new OrderItem(productName, quantity, price));
+        updateTotals();
+    }
+
+    private void updateTotals() {
+        double total = tableView.getItems().stream()
+                .mapToDouble(item -> item.getPrice() * item.getQuantity())
+                .sum();
+
+        double discount = total >= 20 ? total * 0.1 : 0; // 10% discount if total >= 20
+        double finalTotal = total - discount;
+
+        totalLabel.setText(String.format("Total: $%.2f", total));
+        discountLabel.setText(String.format("Discount: $%.2f", discount));
+        finalTotalLabel.setText(String.format("Final Total: $%.2f", finalTotal));
     }
 
     private void placeOrder() {
-        // Loop through all items in receipt table, save to order history repo
         for (OrderItem orderItem : tableView.getItems()) {
             ProductItem product = new ProductItem(
                     generateUniqueId(),
                     orderItem.getProductName(),
                     orderItem.getPrice(),
                     orderItem.getQuantity(),
-                    "Order",  // default category
+                    "Order",
                     getCurrentDateTime()
             );
             repo.addOrder(product);
@@ -69,12 +88,10 @@ public class ReceiptController {
         stage.close();
     }
 
-    // Helper method to generate a unique product/order ID
     private String generateUniqueId() {
         return "ORD-" + System.currentTimeMillis();
     }
 
-    // Helper method to get current date-time as string
     private String getCurrentDateTime() {
         return LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }

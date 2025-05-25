@@ -36,8 +36,6 @@ public class AdminDashboardController {
     @FXML
     private TableColumn<ProductItem, Void> adminRemove;
 
-    @FXML
-    private Button signOut;  // NOTE: lowercase s in signOut, must match fx:id in FXML
 
     @FXML
     private TextField searchField;
