@@ -1,14 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.project4.Dashboard"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="435.0" prefWidth="729.0" style="-fx-background-color: 0c0b07; -fx-border-color: white;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.DashboardController">
+    <left>
+        <VBox prefHeight="399.0" prefWidth="173.0" style="-fx-background-color: DCD7C9; -fx-border-color: white;" BorderPane.alignment="CENTER">
+            <children>
+                <Button mnemonicParsing="false" onAction="#onClickCoffee" prefHeight="41.0" prefWidth="172.0" style="-fx-background-color: none; -fx-border-color: #3F4F44;" text="Coffee" textFill="#3f4f44">
+                    <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font name="Arial Black" size="14.0" />
+                    </font>
+                </Button>
+                <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClickNonCoffee" prefHeight="41.0" prefWidth="172.0" style="-fx-background-color: none; -fx-border-color: #3F4F44;" text="Non-Coffee" textFill="#3f4f44">
+                    <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font name="Arial Black" size="14.0" />
+                    </font>
+                </Button>
+                <Button layoutX="10.0" layoutY="51.0" mnemonicParsing="false" onAction="#onClickPastry" prefHeight="41.0" prefWidth="172.0" style="-fx-background-color: none; -fx-border-color: #3F4F44; -fx-background-radius: 1;" text="Pastry" textFill="#3f4f44">
+                    <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font name="Arial Black" size="14.0" />
+                    </font>
+                </Button>
+            </children>
+        </VBox>
+    </left>
+   <bottom>
+      <HBox prefHeight="34.0" prefWidth="729.0" style="-fx-background-color: #3F4F44;" BorderPane.alignment="CENTER" />
+   </bottom>
+   <center>
+      <ScrollPane fitToHeight="true" fitToWidth="true" pannable="true">
+         <content>
+            <FlowPane fx:id="flowProductList" hgap="5.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="280.0" prefWidth="283.0" prefWrapLength="600.0" style="-fx-background-color: white; -fx-border-color: white;" vgap="5.0">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding></FlowPane>
+         </content>
+      </ScrollPane>
+   </center>
+   <right>
+      <StackPane prefHeight="324.0" prefWidth="301.0" style="-fx-background-color: A27B5C;" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #3F4F44; -fx-border-color: white;">
+               <children>
+                  <TableView fx:id="orderSummary" layoutX="1.0" prefHeight="232.0" prefWidth="295.0" style="-fx-background-color: DCD7C9;" AnchorPane.bottomAnchor="89.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                      <TableColumn fx:id="tableItemList" prefWidth="75.0" text="Item" />
+                      <TableColumn fx:id="tableQuantityList" prefWidth="75.0" text="Quantity" />
+                        <TableColumn fx:id="tablePriceList" prefWidth="75.0" text="Price" />
+                        <TableColumn fx:id="tableRemoveList" prefWidth="75.0" text="Remove" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+                  <Label fx:id="totalLabel" layoutX="2.0" layoutY="240.0" prefHeight="20.0" prefWidth="297.0" text="Total:" textFill="WHITE" AnchorPane.bottomAnchor="61.333333333333314" AnchorPane.leftAnchor="2.0">
+                     <font>
+                        <Font name="Arial Black" size="13.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="clearButton" layoutX="135.0" layoutY="282.0" mnemonicParsing="false" onAction="#clearOrder" prefHeight="38.0" prefWidth="74.0" style="-fx-background-color: none; -fx-border-color: white; -fx-background-radius: 1;" text="Clear" textFill="WHITE" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="135.0" AnchorPane.rightAnchor="93.0">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font></Button>
+                  <Button fx:id="orderButton" layoutX="219.0" layoutY="282.0" mnemonicParsing="false" onAction="#placeOrder" prefHeight="38.0" prefWidth="75.0" style="-fx-background-color: none; -fx-border-color: white; -fx-background-radius: 1;" text="Order" textFill="WHITE" AnchorPane.bottomAnchor="4.0">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font></Button>
+               </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
+   </right>
+</BorderPane>

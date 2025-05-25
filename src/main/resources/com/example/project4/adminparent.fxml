@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.controllers.AdminParentController">
+   <left>
+      <StackPane prefHeight="400.0" prefWidth="134.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane prefHeight="400.0" prefWidth="115.0" style="-fx-background-color: #DCD7C9;">
+               <children>
+                  <Button layoutX="13.0" layoutY="92.0" mnemonicParsing="false" onAction="#onClickDashboard" prefHeight="50.0" prefWidth="114.0" style="-fx-background-color: none; -fx-border-color: #3F4F44;" text="Dashboard" textFill="#3f4f44" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="7.0">
+                     <font>
+                        <Font name="Bernard MT Condensed" size="16.0" />
+                     </font></Button>
+                  <Label layoutX="5.0" layoutY="15.0" prefHeight="46.0" prefWidth="125.0" text="WELCOME ADMINS" textFill="#3d4d42" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="15.0">
+                     <font>
+                        <Font name="Bernard MT Condensed" size="18.0" />
+                     </font></Label>
+                  <Button layoutX="6.0" layoutY="343.0" mnemonicParsing="false" onAction="#onClickSignOut" prefHeight="49.0" prefWidth="115.0" style="-fx-background-color: #3F4F44; -fx-background-radius: 1;" text="Sign Out" textFill="WHITE" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="13.0">
+                     <font>
+                        <Font name="Bernard MT Condensed" size="14.0" />
+                     </font></Button>
+                  <Button layoutX="13.0" layoutY="148.0" mnemonicParsing="false" onAction="#onClickAdminHistory" prefHeight="50.0" prefWidth="114.0" style="-fx-background-color: none; -fx-border-color: #3F4F44;" text="Admin History" textFill="#3f4f44">
+                     <font>
+                        <Font name="Bernard MT Condensed" size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
+   </left>
+   <center>
+      <FlowPane fx:id="adminParentFlowPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
