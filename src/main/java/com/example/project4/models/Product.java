@@ -6,7 +6,7 @@ public class Product {
     private double price;
     private String category;
     private String imagePath;
-    private int quantity;  // quantity to track ordered amount
+    private int quantity;
 
     public Product(String id, String name, double price, String category, String imagePath, int quantity) {
         this.id = id;
@@ -17,7 +17,7 @@ public class Product {
         this.quantity = quantity;
     }
 
-    // Getters and setters for all fields
+    // Getters and Setters
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
 
