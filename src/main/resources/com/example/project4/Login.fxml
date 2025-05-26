@@ -44,7 +44,7 @@
                         <Insets bottom="50.0" left="90.0" right="50.0" />
                      </VBox.margin>
                      <font>
-                        <Font name="Arial Black" size="13.0" />
+                        <Font name="Bernard MT Condensed" size="16.0" />
                      </font>
                   </Button>
                </children>

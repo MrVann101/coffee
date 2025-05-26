@@ -1,31 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.controllers.ReceiptController" prefWidth="312.0" prefHeight="400.0">
+<StackPane prefHeight="400.0" prefWidth="312.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.controllers.ReceiptController">
     <children>
         <AnchorPane>
             <children>
-                <VBox layoutX="5.0" layoutY="7.0" AnchorPane.topAnchor="7.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="4.6" AnchorPane.bottomAnchor="1.0">
-                    <children>
-                        <AnchorPane prefHeight="392.0" prefWidth="302.0">
-                            <children>
-                                <TableView fx:id="tableView" layoutX="14.0" layoutY="27.0" prefHeight="278.0" prefWidth="270.0" AnchorPane.topAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="18.0" AnchorPane.bottomAnchor="86.6">
-                                    <columns>
-                                        <TableColumn fx:id="products" text="Products" prefWidth="115.2"/>
-                                        <TableColumn fx:id="quantity" text="Quantity" prefWidth="76.6"/>
-                                        <TableColumn fx:id="price" text="Price" prefWidth="75.8"/>
-                                    </columns>
-                                </TableView>
-                                <Label layoutX="38.0" layoutY="320.0" text="Order Type:" AnchorPane.topAnchor="320.0" AnchorPane.leftAnchor="38.0"/>
-                                <ChoiceBox fx:id="orderType" layoutX="125.0" layoutY="328.0" prefWidth="150.0" AnchorPane.topAnchor="320.0" AnchorPane.leftAnchor="115.4"/>
-                                <Button fx:id="backButton" layoutX="27.0" layoutY="359.0" prefWidth="110.0" prefHeight="35.0" text="Back" AnchorPane.topAnchor="351.0" AnchorPane.leftAnchor="27.0"/>
-                                <Button fx:id="placeOrderButton" layoutX="165.0" layoutY="359.0" prefWidth="110.0" prefHeight="35.0" text="Place Order" AnchorPane.topAnchor="351.0" AnchorPane.leftAnchor="165.0"/>
-                            </children>
-                        </AnchorPane>
-                    </children>
-                </VBox>
+                <VBox layoutX="5.0" layoutY="7.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="4.6" AnchorPane.topAnchor="7.0" />
+            </children>
+        </AnchorPane>
+        <AnchorPane prefHeight="425.0" prefWidth="312.0">
+            <children>
+                <TableView fx:id="tableView" layoutX="14.0" layoutY="27.0" prefHeight="241.0" prefWidth="280.0" AnchorPane.bottomAnchor="138.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="27.0">
+                    <columns>
+                        <TableColumn fx:id="products" prefWidth="115.2" text="Products" />
+                        <TableColumn fx:id="quantity" prefWidth="76.6" text="Quantity" />
+                        <TableColumn fx:id="price" prefWidth="75.8" text="Price" />
+                    </columns>
+                </TableView>
+                <Label layoutX="41.0" layoutY="271.0" text="Total Cost:" />
+                <Label fx:id="totalCostLabel" layoutX="122.0" layoutY="271.0" text="₱0.00" />
+
+                <Label layoutX="38.0" layoutY="297.0" text="Order Type:" />
+                <ChoiceBox fx:id="orderType" layoutX="125.0" layoutY="293.0" prefHeight="18.0" prefWidth="150.0" />
+
+                <Label layoutX="43.0" layoutY="328.0" text="Payment Type:" />
+                <ChoiceBox fx:id="paymentType" layoutX="125.0" layoutY="324.0" prefWidth="150.0" />
+
+                <Button fx:id="backButton" layoutX="27.0" layoutY="357.0" prefHeight="39.0" prefWidth="110.0" text="Back" />
+                <Button fx:id="placeOrderButton" layoutX="165.0" layoutY="357.0" prefHeight="39.0" prefWidth="110.0" text="Place Order" />
             </children>
         </AnchorPane>
     </children>
 </StackPane>
+

@@ -22,7 +22,7 @@
                      <font>
                         <Font name="Bernard MT Condensed" size="18.0" />
                      </font></Button>
-                  <Label layoutX="20.0" layoutY="5.0" prefHeight="49.0" prefWidth="196.0" style="-fx-background-color: none;" text="Coffee &amp; Pastry" textFill="#e4dbdb">
+                  <Label layoutX="20.0" layoutY="5.0" prefHeight="49.0" prefWidth="196.0" style="-fx-background-color: none;" text="Breeze Brew Coffee" textFill="#e4dbdb">
                      <font>
                         <Font name="Bernard MT Condensed" size="18.0" />
                      </font>

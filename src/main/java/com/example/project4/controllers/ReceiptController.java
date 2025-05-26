@@ -19,6 +19,8 @@ public class ReceiptController {
     @FXML private TableColumn<OrderItem, Integer> quantity;
     @FXML private TableColumn<OrderItem, Double> price;
     @FXML private ChoiceBox<String> orderType;
+    @FXML private ChoiceBox<String> paymentType;
+    @FXML private Label totalCostLabel;
     @FXML private Button placeOrderButton;
     @FXML private Button backButton;
 
@@ -33,23 +35,35 @@ public class ReceiptController {
         orderType.getItems().addAll("Dine In", "Take Out");
         orderType.getSelectionModel().selectFirst();
 
+        paymentType.getItems().addAll("Cash", "Card");
+        paymentType.getSelectionModel().selectFirst();
+
         placeOrderButton.setOnAction(e -> placeOrder());
         backButton.setOnAction(e -> goBack());
+
+        // Listen for changes and update total
+        tableView.getItems().addListener((javafx.collections.ListChangeListener<OrderItem>) change -> updateTotalCost());
+
+        // Initial update
+        updateTotalCost();
     }
 
     public void addItemToReceipt(String productName, int quantity, double price) {
         tableView.getItems().add(new OrderItem(productName, quantity, price));
+        updateTotalCost();
     }
 
     private void placeOrder() {
-        // Loop through all items in receipt table, save to order history repo
+        String selectedPayment = paymentType.getValue();
+        String selectedOrderType = orderType.getValue();
+
         for (OrderItem orderItem : tableView.getItems()) {
             ProductItem product = new ProductItem(
                     generateUniqueId(),
                     orderItem.getProductName(),
                     orderItem.getPrice(),
                     orderItem.getQuantity(),
-                    "Order",  // default category
+                    selectedOrderType + " / " + selectedPayment,
                     getCurrentDateTime()
             );
             repo.addOrder(product);
@@ -58,10 +72,18 @@ public class ReceiptController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Order Confirmation");
         alert.setHeaderText(null);
-        alert.setContentText("Thank you! Your order has been finalized.");
+        alert.setContentText("Thank you! Your order has been finalized.\nPayment: " + selectedPayment);
         alert.showAndWait();
 
         goBack();
+    }
+
+    private void updateTotalCost() {
+        double total = 0;
+        for (OrderItem item : tableView.getItems()) {
+            total += item.getPrice() * item.getQuantity();
+        }
+        totalCostLabel.setText("₱" + String.format("%.2f", total));
     }
 
     private void goBack() {
@@ -69,12 +91,10 @@ public class ReceiptController {
         stage.close();
     }
 
-    // Helper method to generate a unique product/order ID
     private String generateUniqueId() {
         return "ORD-" + System.currentTimeMillis();
     }
 
-    // Helper method to get current date-time as string
     private String getCurrentDateTime() {
         return LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }

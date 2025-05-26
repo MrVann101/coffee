@@ -4,8 +4,6 @@ import com.example.project4.controllers.ProductController;
 import com.example.project4.controllers.ReceiptController;
 import com.example.project4.database.Database;
 import com.example.project4.models.Product;
-import com.example.project4.models.ProductItem;
-import com.example.project4.repositories.OrderHistoryRepository;
 import com.example.project4.repositories.ProductRepository;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -26,8 +24,6 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class DashboardController {
@@ -47,10 +43,11 @@ public class DashboardController {
 
     @FXML
     protected void initialize() {
+        // Load Coffee products initially
         loadProductsByCategory("Coffee");
 
         tableItemList.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
-        tableQuantityList.setCellValueFactory(cellData -> new SimpleIntegerProperty((int) cellData.getValue().getQuantity()).asObject());
+        tableQuantityList.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getQuantity()).asObject());
         tablePriceList.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getPrice()).asObject());
 
         tableRemoveList.setCellFactory(col -> new TableCell<>() {
@@ -79,7 +76,7 @@ public class DashboardController {
         flowProductList.getChildren().clear();
 
         List<Product> productList = repository.getAllProducts().stream()
-                .filter(product -> product.getCategory().equals(category))
+                .filter(product -> product.getCategory().equalsIgnoreCase(category))
                 .toList();
 
         for (Product product : productList) {
@@ -158,46 +155,24 @@ public class DashboardController {
             return;
         }
 
-        // Show receipt popup with order details
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("receipt.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Order Receipt");
+            stage.setTitle("Order Confirmation");
             stage.initModality(Modality.APPLICATION_MODAL);
 
             ReceiptController receiptController = loader.getController();
 
-            // Pass items to ReceiptController
             orderSummary.getItems().forEach(item ->
                     receiptController.addItemToReceipt(item.getName(), item.getQuantity(), item.getPrice())
             );
 
             stage.showAndWait();
 
-            // After closing receipt popup, clear order
             clearOrder();
 
         } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void saveOrderToDatabase() {
-        try (Connection conn = Database.connect()) {
-            String sql = "INSERT INTO orders (id, name, price, category, imagePath, quantity) VALUES (?, ?, ?, ?, ?, ?)";
-            for (Product product : orderSummary.getItems()) {
-                try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-                    stmt.setString(1, product.getId());
-                    stmt.setString(2, product.getName());
-                    stmt.setDouble(3, product.getPrice());
-                    stmt.setString(4, product.getCategory());
-                    stmt.setString(5, product.getImagePath());
-                    stmt.setInt(6, product.getQuantity());
-                    stmt.executeUpdate();
-                }
-            }
-        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

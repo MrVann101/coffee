@@ -17,8 +17,8 @@ public class ParentController implements Initializable {
     private FlowPane parentFlowPane;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        // Automatically load the dashboard view on start
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Load dashboard.fxml by default on startup
         loadFXMLIntoFlowPane("/com/example/project4/dashboard.fxml");
     }
 
@@ -49,7 +49,7 @@ public class ParentController implements Initializable {
 
             parentFlowPane.getChildren().add(content);
 
-            // Optional: Set parent reference in child controllers
+            // Pass reference of ParentController to child controllers if needed
             Object controller = loader.getController();
             if (controller instanceof AdminLoginController) {
                 ((AdminLoginController) controller).setParentController(this);

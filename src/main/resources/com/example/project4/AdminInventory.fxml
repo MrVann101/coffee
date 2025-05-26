@@ -1,43 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-   <?import javafx.scene.control.*?>
-   <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-
-   <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="708.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.controllers.AdminInventoryController">
-      <children>
-         <AnchorPane prefHeight="200.0" prefWidth="200.0">
-            <children>
-               <StackPane prefHeight="225.0" prefWidth="600.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0">
-                  <children>
-                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                        <children>
-                           <ListView fx:id="inventoryListView" prefHeight="225.33333333333334" prefWidth="698.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                        </children>
-                     </AnchorPane>
-                  </children>
-               </StackPane>
-               <StackPane layoutX="10.0" layoutY="236.0" prefHeight="159.0" prefWidth="600.0" AnchorPane.bottomAnchor="4.666666666666657" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0">
-                  <children>
-                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                        <children>
-                           <TextField fx:id="productID" layoutX="101.0" layoutY="12.0" />
-                           <TextField fx:id="productName" layoutX="101.0" layoutY="58.0" />
-                           <ChoiceBox fx:id="productImage" layoutX="101.0" layoutY="103.0" prefWidth="150.0" />
-                           <TextField fx:id="productPrice" layoutX="351.0" layoutY="10.0" />
-                           <ChoiceBox fx:id="productCategory" layoutX="351.0" layoutY="58.0" prefWidth="150.0" />
-                           <Button layoutX="542.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleProductAdd" prefHeight="33.0" prefWidth="66.0" text="Add" />
-                           <Button layoutX="543.0" layoutY="56.0" mnemonicParsing="false" onAction="#handleProductDelete" prefHeight="33.0" prefWidth="66.0" text="Delete" />
-                           <Label layoutX="28.0" layoutY="14.0" text="Product ID:" />
-                           <Label layoutX="6.0" layoutY="61.0" text="Product Name:" />
-                           <Label layoutX="5.0" layoutY="104.0" text="Product Image:" />
-                           <Label layoutX="269.0" layoutY="14.0" prefHeight="17.0" prefWidth="87.0" text="Product Price:" />
-                           <Label layoutX="252.0" layoutY="62.0" prefHeight="17.0" prefWidth="99.0" text="Product Category:" />
-                        </children>
-                     </AnchorPane>
-                  </children>
-               </StackPane>
-            </children>
-         </AnchorPane>
-      </children>
-   </StackPane>
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="845.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.controllers.AdminInventoryController">
+   <children>
+      <AnchorPane prefHeight="398.0" prefWidth="845.0">
+         <children>
+            <ListView fx:id="productListView" layoutX="16.0" layoutY="5.0" prefHeight="206.0" prefWidth="802.0" style="-fx-background-color: white; -fx-background-radius: 10;" AnchorPane.bottomAnchor="236.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="5.0" />
+            <StackPane layoutX="14.0" layoutY="228.0" prefHeight="220.0" prefWidth="801.0" style="-fx-background-color: DCD7C9;" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="30.0">
+               <children>
+                  <AnchorPane prefHeight="369.0" prefWidth="801.0" style="-fx-background-color: #3F4F44; -fx-background-radius: 10;">
+                     <children>
+                        <TextField fx:id="productIDAdminInventory" layoutX="128.0" layoutY="22.0" AnchorPane.leftAnchor="128.0" AnchorPane.topAnchor="22.0" />
+                        <TextField fx:id="productNameAdminInventory" layoutX="128.0" layoutY="58.0" prefHeight="25.0" prefWidth="207.0" AnchorPane.leftAnchor="128.0" />
+                        <TextField fx:id="priceAdminInventory" layoutX="453.0" layoutY="20.0" />
+                        <Label layoutX="58.0" layoutY="22.0" prefHeight="25.0" prefWidth="82.0" text="Product ID:" textFill="WHITE">
+                           <font>
+                              <Font name="Bernard MT Condensed" size="13.0" />
+                           </font></Label>
+                        <Label layoutX="39.0" layoutY="57.0" prefHeight="25.0" prefWidth="99.0" text="Product Name:" textFill="WHITE">
+                           <font>
+                              <Font name="Bernard MT Condensed" size="13.0" />
+                           </font></Label>
+                        <Label layoutX="408.0" layoutY="19.0" prefHeight="25.0" prefWidth="62.0" text="Price:" textFill="WHITE">
+                           <font>
+                              <Font name="Bernard MT Condensed" size="13.0" />
+                           </font></Label>
+                        <ChoiceBox fx:id="categoryAdminInventory" layoutX="454.0" layoutY="60.0" prefWidth="150.0" />
+                        <Label layoutX="389.0" layoutY="60.0" prefHeight="25.0" prefWidth="62.0" text="Category:" textFill="WHITE">
+                           <font>
+                              <Font name="Bernard MT Condensed" size="13.0" />
+                           </font></Label>
+                        <Button layoutX="142.0" layoutY="160.0" mnemonicParsing="false" onAction="#onClickAdd" prefHeight="39.0" prefWidth="72.0" style="-fx-background-color: none; -fx-border-color: white;" text="Add" textFill="WHITE" AnchorPane.bottomAnchor="38.0" AnchorPane.leftAnchor="142.0">
+                           <font>
+                              <Font name="Bernard MT Condensed" size="15.0" />
+                           </font></Button>
+                        <Button layoutX="232.0" layoutY="160.0" mnemonicParsing="false" onAction="#onClickDelete" prefHeight="39.0" prefWidth="72.0" style="-fx-background-color: none; -fx-border-color: white;" text="Delete" textFill="WHITE" AnchorPane.bottomAnchor="38.0">
+                           <font>
+                              <Font name="Bernard MT Condensed" size="15.0" />
+                           </font></Button>
+                        <Label layoutX="3.0" layoutY="96.0" prefHeight="25.0" prefWidth="123.0" text="Product Image Name:" textFill="WHITE">
+                           <font>
+                              <Font name="Bernard MT Condensed" size="13.0" />
+                           </font></Label>
+                        <ChoiceBox fx:id="imageChoice" layoutX="128.0" layoutY="96.0" prefWidth="150.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </StackPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

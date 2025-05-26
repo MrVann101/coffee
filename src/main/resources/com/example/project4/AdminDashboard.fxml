@@ -7,7 +7,7 @@
    <center>
       <AnchorPane prefHeight="329.0" prefWidth="600.0">
          <children>
-            <TableView fx:id="adminTableview" layoutX="2.0" layoutY="13.0" prefHeight="277.0" prefWidth="592.0" style="-fx-background-color: DCD7C9;" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="13.0">
+            <TableView fx:id="adminTableview" layoutX="2.0" layoutY="13.0" prefHeight="277.0" prefWidth="592.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="13.0">
               <columns>
                 <TableColumn fx:id="adminProductId" prefWidth="125.66665136814117" text="Product ID" />
                   <TableColumn fx:id="adminProductName" prefWidth="125.66665136814117" text="Product Name" />
@@ -29,7 +29,7 @@
          <children>
             <AnchorPane prefHeight="25.0" prefWidth="205.0" style="-fx-background-color: DCD7C9; -fx-border-color: white;">
                <children>
-                  <TextField fx:id="searchField" layoutX="242.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="206.0" promptText="Search Product..." style="-fx-background-color: white;" AnchorPane.bottomAnchor="12.000000000000004" AnchorPane.leftAnchor="242.0" AnchorPane.rightAnchor="152.0" AnchorPane.topAnchor="12.0" />
+                  <TextField fx:id="searchField" layoutX="242.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="206.0" promptText="Search Product..." style="-fx-background-color: white; -fx-border-color: white;" AnchorPane.bottomAnchor="12.000000000000004" AnchorPane.leftAnchor="242.0" AnchorPane.rightAnchor="152.0" AnchorPane.topAnchor="12.0" />
                </children>
             </AnchorPane>
          </children></StackPane>

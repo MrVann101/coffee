@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0">
-         <children>
-            <VBox alignment="CENTER" layoutX="138.0" layoutY="81.0" AnchorPane.bottomAnchor="256.6" AnchorPane.leftAnchor="138.0" AnchorPane.rightAnchor="160.39999999999998" AnchorPane.topAnchor="81.0">
-               <children>
-                  <Label prefHeight="62.0" prefWidth="301.0" text="BREEZE BREW COFFEE">
-                     <font>
-                        <Font name="Bernard MT Condensed" size="36.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
-         </children>
-      </AnchorPane>
-   </children>
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.controllers.HomeController">
+    <children>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <children>
+                <VBox alignment="CENTER" layoutX="28.0" layoutY="13.0" prefHeight="382.0" prefWidth="540.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="13.0">
+                    <children>
+                        <Label fx:id="welcomeLabel" prefHeight="74.0" prefWidth="474.0" text="BREEZE BREW COFFEE">
+                            <font>
+                                <Font name="Bernard MT Condensed" size="36.0" />
+                            </font>
+                        </Label>
+                        <ImageView fx:id="logoImage" fitHeight="283.0" fitWidth="480.0" pickOnBounds="true" preserveRatio="true" />
+                    </children>
+                </VBox>
+            </children>
+        </AnchorPane>
+    </children>
 </StackPane>
