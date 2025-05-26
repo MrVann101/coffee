@@ -8,42 +8,56 @@
 
 <VBox fx:id="productBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="264.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.controllers.ProductController">
    <children>
-      <StackPane prefHeight="264.0" prefWidth="200.0">
+      <AnchorPane>
          <children>
-            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: dbd4cb; -fx-background-radius: 7;">
-               <StackPane.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </StackPane.margin>
+            <StackPane prefHeight="264.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <ImageView fx:id="productImage" fitHeight="150.0" fitWidth="189.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="labelProductName" layoutX="7.0" layoutY="174.0" prefHeight="30.0" prefWidth="95.0" text="Label">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font></Label>
-                  <Label fx:id="productPrice" layoutX="107.0" layoutY="174.0" prefHeight="30.0" prefWidth="82.0" text="Label">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font></Label>
-                  <Separator layoutX="4.0" layoutY="173.0" prefHeight="3.0" prefWidth="179.0" />
-                  <Separator layoutX="3.0" layoutY="203.0" prefHeight="3.0" prefWidth="179.0" />
-                  <Button fx:id="buttonClick" layoutX="122.0" layoutY="214.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: none; -fx-background-radius: 1; -fx-border-color: black;" text="ADD">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font></Button>
-                  <Button fx:id="decrementButton" layoutX="7.0" layoutY="214.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="39.0" style="-fx-background-color: none; -fx-background-radius: 1; -fx-border-color: black;" text="-">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                  </Button>
-                  <Label fx:id="quantityLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="46.0" layoutY="214.0" prefHeight="30.0" prefWidth="28.0" text="0" />
-                  <Button fx:id="incrementButton" layoutX="74.0" layoutY="214.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="39.0" style="-fx-background-color: none; -fx-background-radius: 1; -fx-border-color: black;" text="+">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                  </Button>
+                  <Pane prefHeight="254.0" prefWidth="215.0" style="-fx-background-color: #3F4F44; -fx-background-radius: 7;">
+                     <StackPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </StackPane.margin>
+                     <children>
+                        <AnchorPane prefHeight="174.0" prefWidth="169.0">
+                           <children>
+                              <ImageView fx:id="productImage" fitHeight="132.0" fitWidth="167.0" layoutX="12.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="23.799999999999955" AnchorPane.topAnchor="29.0">
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport></ImageView>
+                           </children>
+                        </AnchorPane>
+                        <Label fx:id="labelProductName" layoutX="7.0" layoutY="174.0" prefHeight="30.0" prefWidth="95.0" text="Label" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="productPrice" layoutX="107.0" layoutY="174.0" prefHeight="30.0" prefWidth="82.0" text="Label" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Separator layoutX="4.0" layoutY="173.0" prefHeight="3.0" prefWidth="179.0" />
+                        <Separator layoutX="3.0" layoutY="203.0" prefHeight="3.0" prefWidth="179.0" />
+                        <Button fx:id="buttonClick" layoutX="122.0" layoutY="214.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: none; -fx-background-radius: 1; -fx-border-color: white;" text="ADD" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="decrementButton" layoutX="7.0" layoutY="214.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="39.0" style="-fx-background-color: none; -fx-background-radius: 1; -fx-border-color: white;" text="-" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="quantityLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="46.0" layoutY="214.0" prefHeight="30.0" prefWidth="28.0" text="0" textFill="WHITE" />
+                        <Button fx:id="incrementButton" layoutX="74.0" layoutY="214.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="39.0" style="-fx-background-color: none; -fx-background-radius: 1; -fx-border-color: white;" text="+" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
                </children>
-            </Pane>
+            </StackPane>
          </children>
-      </StackPane>
+      </AnchorPane>
    </children>
 </VBox>

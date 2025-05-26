@@ -36,7 +36,33 @@
             categoryAdminInventory.setItems(FXCollections.observableArrayList("Coffee", "Non-Coffee", "Pastry"));
             imageChoice.setItems(FXCollections.observableArrayList(
                     "/com/example/project4/Images/homepage.jpg",
-                    "/com/example/project4/Images/default.jpg"
+                    "/com/example/project4/Images/default.jpg",
+//                    # COFFEE
+                    "/com/example/project4/Images/Vanilla Latte.jpeg",
+                    "/com/example/project4/Images/4f4e38de-050f-4e1c-bd7e-89a5927c9090.jpeg",
+                    "/com/example/project4/Images/Caramel Macchiato.jpeg",
+                    "/com/example/project4/Images/Mocha Frappe.jpeg",
+                    "/com/example/project4/Images/White Mocha (2).jpeg",
+                    "/com/example/project4/Images/Salted Caramel Cold Brew.jpeg",
+                    "/com/example/project4/Images/Spanish Latte.jpeg",
+//                    # NON-COFFEE
+                    "/com/example/project4/Images/Classic milk tea.jpeg",
+                    "/com/example/project4/Images/matcha.jpeg",
+                    "/com/example/project4/Images/Taro Milk Tea.jpeg",
+                    "/com/example/project4/Images/Mango Yakult.jpeg",
+                    "/com/example/project4/Images/Okinawa Milk Tea.jpeg",
+                    "/com/example/project4/Images/Wintermelon Tea.jpeg",
+                    "/com/example/project4/Images/Choco Mousse frappe.jpeg",
+//                    # PASTRY
+                    "/com/example/project4/Images/Butter Croissant (2).jpeg",
+                    "/com/example/project4/Images/Chocolate Chip Muffin (2).jpeg",
+                    "/com/example/project4/Images/Cinnamon Roll pastry.jpeg",
+                    "/com/example/project4/Images/Ham and Cheese Bun.jpeg",
+                    "/com/example/project4/Images/Cream Cheese Danish.jpeg",
+                    "/com/example/project4/Images/Red Velvet Cupcake.jpeg",
+                    "/com/example/project4/Images/Peach Tart.jpeg"
+
+
             ));
 
             // Load existing products into ObservableList
