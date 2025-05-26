@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: DCD7C9; -fx-background-image: url('@logo1.png'); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" >
+    <children>
+        <HBox layoutX="83.0" layoutY="83.0" prefHeight="100.0" prefWidth="462.0">
+            <children>
+                <Label prefHeight="108.0" prefWidth="479.0" text="   BREEZE BREW CAFE">
+                    <font>
+                        <Font name="Berlin Sans FB" size="44.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets bottom="10.0" right="10.0" />
+                    </HBox.margin>
+                </Label>
+            </children>
+        </HBox>
+        <ImageView fitHeight="204.0" fitWidth="385.0" layoutX="119.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@Images/logo1.png" />
+            </image>
+        </ImageView>
+    </children>
+</AnchorPane>

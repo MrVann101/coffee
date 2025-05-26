@@ -35,7 +35,7 @@ public class AdminDashboardController {
 
     @FXML
     private TableColumn<ProductItem, Void> adminRemove;
-    @FXML private Button SignOut;
+
 
     @FXML
     private TextField searchField;
@@ -45,6 +45,7 @@ public class AdminDashboardController {
 
     @FXML
     public void initialize() {
+        // Initialize table data
         productList = FXCollections.observableArrayList(repo.getAllOrders());
 
         adminProductId.setCellValueFactory(cellData -> cellData.getValue().productIdProperty());
@@ -58,43 +59,33 @@ public class AdminDashboardController {
 
         adminTableview.setItems(productList);
 
-        // 🔍 Search functionality
+        // Search functionality
         searchField.textProperty().addListener((obs, oldVal, newVal) -> {
             List<ProductItem> filtered = repo.searchOrders(newVal);
             productList.setAll(filtered);
         });
+
+
     }
 
     private void setupRemoveButtonColumn() {
-        Callback<TableColumn<ProductItem, Void>, TableCell<ProductItem, Void>> cellFactory = new Callback<>() {
+        Callback<TableColumn<ProductItem, Void>, TableCell<ProductItem, Void>> cellFactory = param -> new TableCell<>() {
+            private final Button removeBtn = new Button("Remove");
+
+            {
+                removeBtn.setOnAction(event -> {
+                    ProductItem item = getTableView().getItems().get(getIndex());
+                    repo.removeOrder(item.getProductId());
+                    productList.remove(item);
+                });
+            }
+
             @Override
-            public TableCell<ProductItem, Void> call(final TableColumn<ProductItem, Void> param) {
-                return new TableCell<>() {
-                    private final Button removeBtn = new Button("Remove");
-
-                    {
-                        removeBtn.setOnAction(event -> {
-                            ProductItem item = getTableView().getItems().get(getIndex());
-                            repo.removeOrder(item.getProductId());
-                            productList.remove(item);
-                        });
-                    }
-
-                    @Override
-                    protected void updateItem(Void item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setGraphic(null);
-                        } else {
-                            setGraphic(removeBtn);
-                        }
-                    }
-                };
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                setGraphic(empty ? null : removeBtn);
             }
         };
-
         adminRemove.setCellFactory(cellFactory);
     }
-
-
 }
