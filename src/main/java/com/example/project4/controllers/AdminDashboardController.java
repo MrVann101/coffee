@@ -12,40 +12,32 @@ import java.util.List;
 
 public class AdminDashboardController {
 
-    @FXML
-    private TableView<ProductItem> adminTableview;
+    private static AdminDashboardController instance;
 
-    @FXML
-    private TableColumn<ProductItem, String> adminProductId;
+    public AdminDashboardController() {
+        instance = this;
+    }
 
-    @FXML
-    private TableColumn<ProductItem, String> adminProductName;
+    public static AdminDashboardController getInstance() {
+        return instance;
+    }
 
-    @FXML
-    private TableColumn<ProductItem, Integer> adminQuantity;
+    @FXML private TableView<ProductItem> adminTableview;
+    @FXML private TableColumn<ProductItem, String> adminProductId;
+    @FXML private TableColumn<ProductItem, String> adminProductName;
+    @FXML private TableColumn<ProductItem, Integer> adminQuantity;
+    @FXML private TableColumn<ProductItem, Double> adminPrice;
+    @FXML private TableColumn<ProductItem, String> adminCategory;
+    @FXML private TableColumn<ProductItem, String> adminDateTime;
+    @FXML private TableColumn<ProductItem, Void> adminRemove;
+    @FXML private Button signOut;
+    @FXML private TextField searchField;
 
-    @FXML
-    private TableColumn<ProductItem, Double> adminPrice;
-
-    @FXML
-    private TableColumn<ProductItem, String> adminCategory;
-
-    @FXML
-    private TableColumn<ProductItem, String> adminDateTime;
-
-    @FXML
-    private TableColumn<ProductItem, Void> adminRemove;
-
-
-    @FXML
-    private TextField searchField;
-
-    private ObservableList<ProductItem> productList;
     private final OrderHistoryRepository repo = new OrderHistoryRepository();
+    private ObservableList<ProductItem> productList;
 
     @FXML
     public void initialize() {
-        // Initialize table data
         productList = FXCollections.observableArrayList(repo.getAllOrders());
 
         adminProductId.setCellValueFactory(cellData -> cellData.getValue().productIdProperty());
@@ -56,16 +48,12 @@ public class AdminDashboardController {
         adminDateTime.setCellValueFactory(cellData -> cellData.getValue().dateTimeProperty());
 
         setupRemoveButtonColumn();
-
         adminTableview.setItems(productList);
 
-        // Search functionality
         searchField.textProperty().addListener((obs, oldVal, newVal) -> {
             List<ProductItem> filtered = repo.searchOrders(newVal);
             productList.setAll(filtered);
         });
-
-
     }
 
     private void setupRemoveButtonColumn() {
@@ -87,5 +75,9 @@ public class AdminDashboardController {
             }
         };
         adminRemove.setCellFactory(cellFactory);
+    }
+
+    public void refreshTable() {
+        productList.setAll(repo.getAllOrders());
     }
 }

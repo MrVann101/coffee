@@ -5,6 +5,7 @@ import com.example.project4.repositories.OrderHistoryRepository;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -18,9 +19,14 @@ public class ReceiptController {
     @FXML private TableColumn<OrderItem, String> products;
     @FXML private TableColumn<OrderItem, Integer> quantity;
     @FXML private TableColumn<OrderItem, Double> price;
+
     @FXML private ChoiceBox<String> orderType;
     @FXML private ChoiceBox<String> paymentType;
+
     @FXML private Label totalCostLabel;
+    @FXML private TextField customerPaymentField;
+    @FXML private Label changeLabel;
+
     @FXML private Button placeOrderButton;
     @FXML private Button backButton;
 
@@ -35,27 +41,43 @@ public class ReceiptController {
         orderType.getItems().addAll("Dine In", "Take Out");
         orderType.getSelectionModel().selectFirst();
 
-        paymentType.getItems().addAll("Cash", "Card");
+        paymentType.getItems().addAll("Cash");
         paymentType.getSelectionModel().selectFirst();
 
         placeOrderButton.setOnAction(e -> placeOrder());
         backButton.setOnAction(e -> goBack());
 
-        // Listen for changes and update total
-        tableView.getItems().addListener((javafx.collections.ListChangeListener<OrderItem>) change -> updateTotalCost());
+        tableView.getItems().addListener((ListChangeListener<OrderItem>) c -> updateTotalCost());
+        customerPaymentField.textProperty().addListener((obs, oldText, newText) -> updateChange());
 
-        // Initial update
         updateTotalCost();
+        updateChange();
     }
 
     public void addItemToReceipt(String productName, int quantity, double price) {
         tableView.getItems().add(new OrderItem(productName, quantity, price));
         updateTotalCost();
+        updateChange();
     }
 
     private void placeOrder() {
+        double customerPayment;
+        try {
+            customerPayment = Double.parseDouble(customerPaymentField.getText());
+        } catch (NumberFormatException e) {
+            showAlert(Alert.AlertType.ERROR, "Invalid Input", "Please enter a valid number for Customer Payment.");
+            return;
+        }
+
+        double total = calculateTotalCost();
+        if (customerPayment < total && paymentType.getValue().equals("Cash")) {
+            showAlert(Alert.AlertType.ERROR, "Insufficient Payment", "Customer payment is less than total cost.");
+            return;
+        }
+
         String selectedPayment = paymentType.getValue();
         String selectedOrderType = orderType.getValue();
+        String dateTimeNow = getCurrentDateTime();
 
         for (OrderItem orderItem : tableView.getItems()) {
             ProductItem product = new ProductItem(
@@ -64,26 +86,48 @@ public class ReceiptController {
                     orderItem.getPrice(),
                     orderItem.getQuantity(),
                     selectedOrderType + " / " + selectedPayment,
-                    getCurrentDateTime()
+                    dateTimeNow
             );
             repo.addOrder(product);
         }
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Order Confirmation");
-        alert.setHeaderText(null);
-        alert.setContentText("Thank you! Your order has been finalized.\nPayment: " + selectedPayment);
-        alert.showAndWait();
+        // Refresh admin table if open
+        AdminDashboardController adminController = AdminDashboardController.getInstance();
+        if (adminController != null) {
+            adminController.refreshTable();
+        }
+
+        showAlert(Alert.AlertType.INFORMATION, "Order Confirmation",
+                "Thank you! Your order has been finalized.\nPayment: " + selectedPayment);
 
         goBack();
     }
 
+    private double calculateTotalCost() {
+        return tableView.getItems().stream()
+                .mapToDouble(item -> item.getPrice() * item.getQuantity())
+                .sum();
+    }
+
     private void updateTotalCost() {
-        double total = 0;
-        for (OrderItem item : tableView.getItems()) {
-            total += item.getPrice() * item.getQuantity();
-        }
+        double total = calculateTotalCost();
         totalCostLabel.setText("₱" + String.format("%.2f", total));
+        updateChange();
+    }
+
+    private void updateChange() {
+        double total = calculateTotalCost();
+        double payment;
+
+        try {
+            payment = Double.parseDouble(customerPaymentField.getText());
+        } catch (NumberFormatException e) {
+            changeLabel.setText("₱0.00");
+            return;
+        }
+
+        double change = payment - total;
+        changeLabel.setText(change < 0 ? "₱0.00" : "₱" + String.format("%.2f", change));
     }
 
     private void goBack() {
@@ -97,6 +141,14 @@ public class ReceiptController {
 
     private String getCurrentDateTime() {
         return LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    }
+
+    private void showAlert(Alert.AlertType type, String title, String content) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 
     public static class OrderItem {

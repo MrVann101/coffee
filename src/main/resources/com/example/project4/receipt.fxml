@@ -2,36 +2,56 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<StackPane prefHeight="400.0" prefWidth="312.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.controllers.ReceiptController">
-    <children>
-        <AnchorPane>
-            <children>
-                <VBox layoutX="5.0" layoutY="7.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="4.6" AnchorPane.topAnchor="7.0" />
-            </children>
-        </AnchorPane>
-        <AnchorPane prefHeight="425.0" prefWidth="312.0">
-            <children>
-                <TableView fx:id="tableView" layoutX="14.0" layoutY="27.0" prefHeight="241.0" prefWidth="280.0" AnchorPane.bottomAnchor="138.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="27.0">
-                    <columns>
-                        <TableColumn fx:id="products" prefWidth="115.2" text="Products" />
-                        <TableColumn fx:id="quantity" prefWidth="76.6" text="Quantity" />
-                        <TableColumn fx:id="price" prefWidth="75.8" text="Price" />
-                    </columns>
-                </TableView>
-                <Label layoutX="41.0" layoutY="271.0" text="Total Cost:" />
-                <Label fx:id="totalCostLabel" layoutX="122.0" layoutY="271.0" text="₱0.00" />
+<StackPane prefHeight="450.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/17.0.12"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.example.project4.controllers.ReceiptController">
 
-                <Label layoutX="38.0" layoutY="297.0" text="Order Type:" />
-                <ChoiceBox fx:id="orderType" layoutX="125.0" layoutY="293.0" prefHeight="18.0" prefWidth="150.0" />
+    <AnchorPane>
+        <VBox spacing="10" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
 
-                <Label layoutX="43.0" layoutY="328.0" text="Payment Type:" />
-                <ChoiceBox fx:id="paymentType" layoutX="125.0" layoutY="324.0" prefWidth="150.0" />
+            <Label text="Order Receipt" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
 
-                <Button fx:id="backButton" layoutX="27.0" layoutY="357.0" prefHeight="39.0" prefWidth="110.0" text="Back" />
-                <Button fx:id="placeOrderButton" layoutX="165.0" layoutY="357.0" prefHeight="39.0" prefWidth="110.0" text="Place Order" />
-            </children>
-        </AnchorPane>
-    </children>
+            <TableView fx:id="tableView" prefHeight="230" prefWidth="300">
+                <columns>
+                    <TableColumn fx:id="products" text="Products" prefWidth="140" />
+                    <TableColumn fx:id="quantity" text="Quantity" prefWidth="80" />
+                    <TableColumn fx:id="price" text="Price" prefWidth="80" />
+                </columns>
+            </TableView>
+
+            <HBox spacing="5" alignment="CENTER_LEFT">
+                <Label text="Total Cost:" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                <Label fx:id="totalCostLabel" text="₱0.00" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+            </HBox>
+
+            <HBox spacing="5" alignment="CENTER_LEFT">
+                <Label text="Order Type:" prefWidth="100" />
+                <ChoiceBox fx:id="orderType" prefWidth="180" />
+            </HBox>
+
+            <HBox spacing="5" alignment="CENTER_LEFT">
+                <Label text="Payment Type:" prefWidth="100" />
+                <ChoiceBox fx:id="paymentType" prefWidth="180" />
+            </HBox>
+
+            <HBox spacing="5" alignment="CENTER_LEFT">
+                <Label text="Customer Payment:" prefWidth="100" />
+                <TextField fx:id="customerPaymentField" prefWidth="180" promptText="₱0.00" />
+            </HBox>
+
+            <HBox spacing="5" alignment="CENTER_LEFT">
+                <Label text="Change:" prefWidth="100" />
+                <Label fx:id="changeLabel" text="₱0.00" />
+            </HBox>
+
+            <HBox spacing="15" alignment="CENTER" style="-fx-padding: 10 0 0 0;">
+                <Button fx:id="backButton" text="Back" style="-fx-background-color: #3F4F44; -fx-text-fill: white;" prefWidth="120" />
+                <Button fx:id="placeOrderButton" text="Place Order" style="-fx-background-color: #3F4F44; -fx-text-fill: white;" prefWidth="120" />
+            </HBox>
+
+        </VBox>
+    </AnchorPane>
+
 </StackPane>
-
