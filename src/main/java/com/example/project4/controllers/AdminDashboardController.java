@@ -6,7 +6,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.util.Callback;
 
 import java.util.List;
 
@@ -29,8 +28,8 @@ public class AdminDashboardController {
     @FXML private TableColumn<ProductItem, Double> adminPrice;
     @FXML private TableColumn<ProductItem, String> adminCategory;
     @FXML private TableColumn<ProductItem, String> adminDateTime;
-    @FXML private TableColumn<ProductItem, Void> adminRemove;
-    @FXML private Button signOut;
+    @FXML private TableColumn<ProductItem, Double> adminTotalPrice;  // Total Price column
+
     @FXML private TextField searchField;
 
     private final OrderHistoryRepository repo = new OrderHistoryRepository();
@@ -47,34 +46,19 @@ public class AdminDashboardController {
         adminCategory.setCellValueFactory(cellData -> cellData.getValue().categoryProperty());
         adminDateTime.setCellValueFactory(cellData -> cellData.getValue().dateTimeProperty());
 
-        setupRemoveButtonColumn();
+        // Set the total price column to price * quantity
+        adminTotalPrice.setCellValueFactory(cellData -> {
+            ProductItem item = cellData.getValue();
+            double total = item.getPrice() * item.getQuantity();
+            return new javafx.beans.property.SimpleDoubleProperty(total).asObject();
+        });
+
         adminTableview.setItems(productList);
 
         searchField.textProperty().addListener((obs, oldVal, newVal) -> {
             List<ProductItem> filtered = repo.searchOrders(newVal);
             productList.setAll(filtered);
         });
-    }
-
-    private void setupRemoveButtonColumn() {
-        Callback<TableColumn<ProductItem, Void>, TableCell<ProductItem, Void>> cellFactory = param -> new TableCell<>() {
-            private final Button removeBtn = new Button("Remove");
-
-            {
-                removeBtn.setOnAction(event -> {
-                    ProductItem item = getTableView().getItems().get(getIndex());
-                    repo.removeOrder(item.getProductId());
-                    productList.remove(item);
-                });
-            }
-
-            @Override
-            protected void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty);
-                setGraphic(empty ? null : removeBtn);
-            }
-        };
-        adminRemove.setCellFactory(cellFactory);
     }
 
     public void refreshTable() {

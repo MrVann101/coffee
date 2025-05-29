@@ -39,6 +39,12 @@ public class AdminParentController implements Initializable {
     }
 
     @FXML
+    void onClickAdminDashboard(ActionEvent event) {
+        loadFXMLIntoFlowPane("/com/example/project4/AdminSale.fxml");
+    }
+
+
+    @FXML
     void onClickSignOut(ActionEvent event) {
         parentController.loadFXMLIntoFlowPane("/com/example/project4/Login.fxml");
     }

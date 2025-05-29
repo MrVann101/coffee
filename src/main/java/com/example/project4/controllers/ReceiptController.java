@@ -79,9 +79,30 @@ public class ReceiptController {
         String selectedOrderType = orderType.getValue();
         String dateTimeNow = getCurrentDateTime();
 
+        String customerId = generateUniqueId();
+        StringBuilder receipt = new StringBuilder();
+
+        // Header
+        receipt.append("Breeze Brew\n");
+        receipt.append("Valencia City PH: (609) 555-5678\n\n");
+
+        receipt.append("Date: ").append(dateTimeNow.split(" ")[0])
+                .append("   Time: ").append(dateTimeNow.split(" ")[1]).append("\n");
+        receipt.append("Customer ID: ").append(customerId).append("\n");
+        receipt.append("Cashier: Admin\n\n");
+
+        // Items
+        double subtotal = 0;
         for (OrderItem orderItem : tableView.getItems()) {
+            double itemTotal = orderItem.getPrice() * orderItem.getQuantity();
+            receipt.append(orderItem.getQuantity()).append("x ")
+                    .append(orderItem.getProductName()).append("  ₱")
+                    .append(String.format("%.2f", itemTotal)).append("\n");
+
+            subtotal += itemTotal;
+
             ProductItem product = new ProductItem(
-                    generateUniqueId(),
+                    customerId,
                     orderItem.getProductName(),
                     orderItem.getPrice(),
                     orderItem.getQuantity(),
@@ -91,14 +112,25 @@ public class ReceiptController {
             repo.addOrder(product);
         }
 
+        // Removed tax calculation
+
+        double change = customerPayment - subtotal;
+
+        // Removed tax line from receipt
+        receipt.append("Total: ₱").append(String.format("%.2f", subtotal)).append("\n");
+        receipt.append("Payment: ₱").append(String.format("%.2f", customerPayment)).append("\n");
+        receipt.append("Change: ₱").append(String.format("%.2f", change)).append("\n\n");
+
+        receipt.append("Thank you for visiting!\n");
+
+        // Show receipt alert
+        showAlert(Alert.AlertType.INFORMATION, "Order Receipt", receipt.toString());
+
         // Refresh admin table if open
         AdminDashboardController adminController = AdminDashboardController.getInstance();
         if (adminController != null) {
             adminController.refreshTable();
         }
-
-        showAlert(Alert.AlertType.INFORMATION, "Order Confirmation",
-                "Thank you! Your order has been finalized.\nPayment: " + selectedPayment);
 
         goBack();
     }

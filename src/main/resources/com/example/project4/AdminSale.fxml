@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1217.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.controllers.AdminSaleController">
+   <children>
+      <AnchorPane prefHeight="452.0" prefWidth="901.0" style="-fx-background-color: #3F4F44; -fx-border-color: white;">
+         <children>
+            <AnchorPane layoutX="16.0" layoutY="8.0" prefHeight="145.0" prefWidth="556.0" style="-fx-background-color: white; -fx-background-radius: 6;" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="8.0">
+               <children>
+                  <AnchorPane layoutX="265.0" layoutY="21.0" prefHeight="108.0" prefWidth="155.0" style="-fx-background-color: #3F4F44; -fx-background-radius: 6;" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="265.0" AnchorPane.topAnchor="21.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="9.0" prefHeight="39.0" prefWidth="140.0" text="TOTAL ORDERS" textFill="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="9.0">
+                           <font>
+                              <Font name="Bernard MT Condensed" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="totalOrder" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="58.0" prefHeight="39.0" prefWidth="140.0" text="0" textFill="WHITE">
+                           <font>
+                              <Font name="Bernard MT Condensed" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="509.0" layoutY="16.0" prefHeight="113.0" prefWidth="155.0" style="-fx-background-color: #3F4F44; -fx-background-radius: 6;" AnchorPane.bottomAnchor="16.0" AnchorPane.topAnchor="16.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="11.0" layoutY="8.0" prefHeight="39.0" prefWidth="134.0" text="TODAY'S INCOME" textFill="WHITE">
+                           <font>
+                              <Font name="Bernard MT Condensed" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="todayIncome" alignment="CENTER" contentDisplay="CENTER" layoutX="8.0" layoutY="57.0" prefHeight="39.0" prefWidth="140.0" text="0" textFill="WHITE">
+                           <font>
+                              <Font name="Bernard MT Condensed" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="739.0" layoutY="16.0" prefHeight="113.0" prefWidth="155.0" style="-fx-background-color: #3F4F44; -fx-background-radius: 6;" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="739.0" AnchorPane.topAnchor="16.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="17.0" layoutY="11.0" prefHeight="39.0" prefWidth="126.0" text="TOTAL INCOMES" textFill="#fbfbfb">
+                           <font>
+                              <Font name="Bernard MT Condensed" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="totalIncome" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="58.0" prefHeight="39.0" prefWidth="140.0" text="0" textFill="WHITE" AnchorPane.bottomAnchor="13.666666666666664" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="5.333333333333343" AnchorPane.topAnchor="57.00000000000001">
+                           <font>
+                              <Font name="Bernard MT Condensed" size="16.0" />
+                           </font>
+                        </Label>
+                     </children></AnchorPane>
+               </children></AnchorPane>
+            <AnchorPane layoutX="16.0" layoutY="170.0" prefHeight="214.0" prefWidth="556.0" style="-fx-background-color: white; -fx-background-radius: 6;" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="182.0">
+               <children>
+                  <AnchorPane layoutX="17.0" layoutY="12.0" prefHeight="414.0" prefWidth="469.0" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="688.0" AnchorPane.topAnchor="11.0">
+                     <children>
+                        <BarChart fx:id="orderChart" layoutX="-1.0" prefHeight="443.0" prefWidth="480.0" title="Number of the Order's Chart" AnchorPane.bottomAnchor="-38.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-14.0" AnchorPane.topAnchor="0.0">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </BarChart>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="625.0" layoutY="5.0" prefHeight="452.0" prefWidth="425.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="624.0" AnchorPane.rightAnchor="124.0" AnchorPane.topAnchor="5.0">
+                     <children>
+                        <LineChart fx:id="incomeChart" prefHeight="516.0" prefWidth="487.0" title="Income Chart" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </LineChart>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

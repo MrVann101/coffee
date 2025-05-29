@@ -26,6 +26,11 @@
                      <font>
                         <Font name="Bernard MT Condensed" size="18.0" />
                      </font></Button>
+                  <Button layoutX="11.0" layoutY="218.0" mnemonicParsing="false" onAction="#onClickAdminDashboard" prefHeight="50.0" prefWidth="112.0" style="-fx-background-color: none; -fx-border-color: #3F4F44;" text="Admin Dashboard" textFill="#3f4f44">
+                     <font>
+                        <Font name="Bernard MT Condensed" size="16.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
          </children>
